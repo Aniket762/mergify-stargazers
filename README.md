@@ -45,7 +45,7 @@ Since, the versioning of modules correlated can vary, I would suggest you to ins
 Once, you have installed the Flask module you are good to go with running the `app.py` file.
 
 ```python
-7. python3 app.py
+7. python3 lib/app.py
 ```
 
 # Approach to build 💪
@@ -95,4 +95,37 @@ def getReposFromUser(username:str):
 ```
 Here, we use the GitHub API "https://api.github.com/users/USERNAME/starred" to get all the repositories stared by a single user. We get all the details with and count with a limit of 10,000 on the number of values we get. We store all the values in `text`. We destructure the text object and append only the `full_name` fields in a list known as repos and finally, return it.
 
-3. 
+3. Finally, we build the API end point. The basic algorithm which we follow to develop is written step by step:
+The API end point which we built is: `/repos/<user>/<repo>/starneighbours`
+- Step 1: Get all the stargazers for the repository sent in the request
+- Step 2: Get each stargazers who the stared repository
+- Step 3: All the repos we get of which were stared by the stargazers are our neighbouring repos
+- Step 4: Now we start our traversing. For the first stargazer we create a hashmap with repo name as the key and usernames as a list of values. The traversal would go on subsequently to other stargazers if stargazer has a the same repository which they have stared together the stargazer would get appended else, a new key value pair would be created at the base. Ultimately, add the list to the base list of parent stargazers.
+
+```python
+@app.route("/repos/<string:username>/<string:reponame>/starneighbours",methods = ['GET'])
+def getStarNeighbours(username:str,reponame:str):
+    stargazers =  getUsersFromRepo(username,reponame)
+    resultant={}
+    for stargazer in stargazers:
+        allRepos= getReposFromUser(stargazer)
+        for repo in allRepos:
+            if repo not in resultant:
+                resultant[repo]=[stargazer]
+            else:
+                resultant[repo].append(stargazer)
+    return jsonify(resultant)
+```
+Ultimately, we are done. To get the code in total checkout the `lib/app.py`, you are free to modify it according to your need. 
+
+# Demo 💻
+When we use the URL `http://127.0.0.1:5000/repos/Aniket762/playground/starneighbours` to get the data we get. 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/67703407/170256564-c5d7c331-90fd-4d3b-8c17-419ca61e6af0.png" width="600" />
+</p>
+Although,there are more data which comes along. But, for simplicity data which is enough to showcase the data structure is shown. 
+
+
+
+
+
