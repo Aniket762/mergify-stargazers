@@ -32,6 +32,19 @@ def getReposFromUser(username:str):
 def index():
     return ("<h1>Hello, Stargazers from Mergify 👋</h1>")
 
+# master route
+@app.route("/repos/<string:username>/<string:reponame>/starneighbours",methods = ['GET'])
+def getStarNeighbours(username:str,reponame:str):
+    stargazers =  getUsersFromRepo(username,reponame)
+    resultant={}
+    for stargazer in stargazers:
+        allRepos= getReposFromUser(stargazer)
+        for repo in allRepos:
+            if repo not in resultant:
+                resultant[repo]=[stargazer]
+            else:
+                resultant[repo].append(stargazer)
+    return jsonify(resultant)
 
 if __name__ == "__main__":
     app.run(debug=True)
