@@ -25,7 +25,7 @@ When the above command is ran, the virtual environment gets created. Now, we act
 3. source mergify/bin/activate
 ```
 
-To check the version of python you can run the command
+To check the path python you can run the command
 
 ```python
 4. which python
@@ -37,8 +37,14 @@ The project uses Flask as the micro-backend framework for building the backend a
 5. pip3 install flask
 ```
 
+Since, the versioning of modules correlated can vary, I would suggest you to install all the modules via `requirements.txt`
+```python
+6. pip install requirements.txt
+```
+
 Once, you have installed the Flask module you are good to go with running the `app.py` file.
 
 ```python
-6. python3 app.py
+7. python3 app.py
 ```
+
