@@ -121,7 +121,8 @@ Ultimately, we are done. To get the code in total checkout the `lib/app.py`, you
 # Demo 💻
 When we use the URL `http://127.0.0.1:5000/repos/Aniket762/playground/starneighbours` to get the data we get. 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/67703407/170256564-c5d7c331-90fd-4d3b-8c17-419ca61e6af0.png" width="600" />
+<img width="1440" alt="Data fetched from Playground StarNeighbours Mergify" src="https://user-images.githubusercontent.com/67703407/170259365-d03d324d-f961-4bef-a012-82547589d0fa.png">
+
 </p>
 Although,there are more data which comes along. But, for simplicity data which is enough to showcase the data structure is shown. 
 
