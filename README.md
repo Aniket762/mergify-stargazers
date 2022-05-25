@@ -125,6 +125,10 @@ When we use the URL `http://127.0.0.1:5000/repos/Aniket762/playground/starneighb
 </p>
 Although,there are more data which comes along. But, for simplicity data which is enough to showcase the data structure is shown. 
 
+# Scopes of improvement for the application 🤓
+1. The current time complexity of the code is O(nm) where n is the number of stargazer and m is the number of repository. The time complexity of the program can be significantly improved with proper ananlysis.
+2. Although, from a bird's eye the code may seem perfectly fine. In it's way of working, but there is no tests written to tackle the corner cases.
+3. The application uses 2 External APIs in it's core to fetch data, even if one gets deprecated the application breaks with no particular message display. 
 
 
 
